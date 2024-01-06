@@ -1,2 +1,3 @@
 rootProject.name = 'Test_program'
+include 'addressbook-web-tests'
 
