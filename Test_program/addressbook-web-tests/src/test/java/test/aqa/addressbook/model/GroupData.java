@@ -1,4 +1,4 @@
-package test.aqa.addressbook;
+package test.aqa.addressbook.model;
 
 public class GroupData {
    private final String name;
