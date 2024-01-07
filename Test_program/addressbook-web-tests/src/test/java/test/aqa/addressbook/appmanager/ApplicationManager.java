@@ -12,7 +12,6 @@ import static org.openqa.selenium.remote.Browser.*;
 public class ApplicationManager {
    private final String browser;
    public WebDriver wd;
-   private SessionHelper sessionHelper;
    private NavigationHelper navigationHelper;
    private GroupHelper groupHelper;
 
@@ -22,12 +21,12 @@ public class ApplicationManager {
 
 
    public void init() {
-      if (browser == CHROME.browserName()){
+      if (browser.equals(CHROME.browserName())){
          System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
          wd = new ChromeDriver();
-      } else if (browser == FIREFOX.browserName()) {
+      } else if (browser.equals(FIREFOX.browserName())) {
          wd = new FirefoxDriver();
-      } else if (browser == EDGE.browserName()) {
+      } else if (browser.equals(EDGE.browserName())) {
          wd = new EdgeDriver();
       }
 
@@ -35,7 +34,7 @@ public class ApplicationManager {
       wd.get("http://localhost/addressbook/group.php");
       groupHelper = new GroupHelper(wd);
       navigationHelper = new NavigationHelper(wd);
-      sessionHelper = new SessionHelper(wd);
+      SessionHelper sessionHelper = new SessionHelper(wd);
       sessionHelper.login("admin", "secret");
    }
 
