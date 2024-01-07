@@ -11,7 +11,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class TestBase {
 
-   public final ApplicationManager app = new ApplicationManager(EDGE.browserName());
+   public final ApplicationManager app = new ApplicationManager(CHROME.browserName());
 
    @BeforeMethod(alwaysRun = true)
    public void setUp() throws Exception {
