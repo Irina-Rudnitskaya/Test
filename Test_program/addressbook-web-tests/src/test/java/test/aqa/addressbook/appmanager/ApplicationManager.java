@@ -13,6 +13,7 @@ public class ApplicationManager {
    private final String browser;
    public WebDriver wd;
    private NavigationHelper navigationHelper;
+   private SessionHelper sessionHelper;
    private GroupHelper groupHelper;
 
    public ApplicationManager(String browser) {
@@ -34,7 +35,7 @@ public class ApplicationManager {
       wd.get("http://localhost/addressbook/group.php");
       groupHelper = new GroupHelper(wd);
       navigationHelper = new NavigationHelper(wd);
-      SessionHelper sessionHelper = new SessionHelper(wd);
+      sessionHelper = new SessionHelper(wd);
       sessionHelper.login("admin", "secret");
    }
 
