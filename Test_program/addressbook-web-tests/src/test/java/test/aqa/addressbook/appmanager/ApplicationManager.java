@@ -1,20 +1,36 @@
 package test.aqa.addressbook.appmanager;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.time.Duration;
 
+import static org.openqa.selenium.remote.Browser.*;
+
 public class ApplicationManager {
+   private final String browser;
    public WebDriver wd;
    private SessionHelper sessionHelper;
    private NavigationHelper navigationHelper;
    private GroupHelper groupHelper;
 
+   public ApplicationManager(String browser) {
+      this.browser = browser;
+   }
+
+
    public void init() {
-      System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
-      wd = new ChromeDriver();
+      if (browser == CHROME.browserName()){
+         System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver.exe");
+         wd = new ChromeDriver();
+      } else if (browser == FIREFOX.browserName()) {
+         wd = new FirefoxDriver();
+      } else if (browser == EDGE.browserName()) {
+         wd = new EdgeDriver();
+      }
+
       wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
       wd.get("http://localhost/addressbook/group.php");
       groupHelper = new GroupHelper(wd);

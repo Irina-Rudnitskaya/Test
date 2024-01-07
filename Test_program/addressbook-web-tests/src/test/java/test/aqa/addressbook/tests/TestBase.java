@@ -4,9 +4,14 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import test.aqa.addressbook.appmanager.ApplicationManager;
 
+import static org.openqa.selenium.remote.Browser.*;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 public class TestBase {
 
-   protected final ApplicationManager app = new ApplicationManager();
+   public final ApplicationManager app = new ApplicationManager(EDGE.browserName());
 
    @BeforeMethod(alwaysRun = true)
    public void setUp() throws Exception {

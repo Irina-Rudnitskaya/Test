@@ -9,6 +9,7 @@ public class NavigationHelper extends HelperBase{
    }
 
    public void goToCroupPage() {
-    click(By.linkText("groups"));
+
+      click(By.linkText("groups"));
    }
 }
