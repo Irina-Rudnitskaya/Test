@@ -2,10 +2,14 @@ package test.aqa.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import test.aqa.addressbook.model.ContactData;
 import test.aqa.addressbook.model.GroupData;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ContactHelper extends HelperBase {
    public ContactHelper(WebDriver wd) {
@@ -54,4 +58,18 @@ public class ContactHelper extends HelperBase {
 
       click(By.linkText("home page"));
    }
+   public List<ContactData> getContactList() {
+      List<ContactData> contacts = new ArrayList<ContactData>();
+      List<WebElement> elements = wd.findElements(By.cssSelector("tr[name=entry]"));
+      for (WebElement element: elements){
+         List<WebElement> data = element.findElements(By.tagName("td"));
+         int id = Integer.parseInt(data.get(0).findElement(By.tagName("input")).getAttribute("value"));
+         String lastName = data.get(1).getText();
+         String firstName = data.get(2).getText();
+         String address = data.get(3).getText();
+         ContactData contact = new ContactData(firstName, lastName,address,null);
+         contacts.add(contact);
+      }
+      return contacts;
+   };
 }
